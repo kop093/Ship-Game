@@ -1,0 +1,15 @@
+.GameGridRow {
+  display: flex;
+  /* flex-shrink: 0; */
+}
+
+.GameGridRow > div {
+  min-width: 10px;
+  min-height: 10px;
+  background-color: aqua;
+  border: 1px solid;
+}
+
+.GameGridRow > div.Player {
+  background-color: brown;
+}
