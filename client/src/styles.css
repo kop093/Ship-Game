@@ -1,15 +1,20 @@
+.App {
+  margin: 15%;
+}
+
 .GameGridRow {
   display: flex;
-  /* flex-shrink: 0; */
 }
 
 .GameGridRow > div {
-  min-width: 10px;
-  min-height: 10px;
+  min-width: 20px;
+  min-height: 20px;
   background-color: aqua;
   border: 1px solid;
 }
 
 .GameGridRow > div.Player {
   background-color: brown;
+  /* background-image: url("./image/samleimage2.png"); */
+  /* z-index: 10; */
 }

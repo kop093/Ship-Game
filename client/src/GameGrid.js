@@ -9,6 +9,7 @@ const GameGrid = (props) => {
     let cols = [];
     for (let col = 1; col <= game.gameWidth; col++) {
       let classNames = "";
+
       if (row === playerY && col === playerX) {
         classNames = "Player";
       }
@@ -21,7 +22,13 @@ const GameGrid = (props) => {
       </div>
     );
   }
-  return <div className="GameGrid">{rows}</div>;
+
+  return (
+    <div className="GameGrid">
+      {rows}
+      <img src="./image/kenney_piratepack/PNG/Retina/Ships/ship (1).png" />
+    </div>
+  );
 };
 
 export default GameGrid;
