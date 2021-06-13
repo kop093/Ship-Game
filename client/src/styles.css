@@ -18,3 +18,8 @@
   /* background-image: url("./image/samleimage2.png"); */
   /* z-index: 10; */
 }
+
+img {
+  position: absolute;
+  height: 20px;
+}
