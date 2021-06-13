@@ -5,34 +5,63 @@ const { games } = require("./mongo");
 
 const app = express();
 
+app.use(express.static("public"));
+
 app.get("/test", (req, res) => {
   return res.send("taco");
 });
 
+app.put("/game/enemy/:level", (req, res) => {
+  const params = req.params;
+});
+
 app.put("/game/player/move/:direction", (req, res) => {
-  console.log(req.params);
-  const id = uuid();
-  const playerX = 15;
-  const playerY = 15;
-  const enemyX = 10;
-  const enemyY = 10;
-  const gameWidth = 25;
-  const gameHeight = 20;
+  const params = req.params;
 
-  const gameObject = {
-    gameId: id,
-    playerX,
-    playerY,
-    enemyX,
-    enemyY,
-    gameWidth,
-    gameHeight,
-  };
+  let xDir = 0;
+  let yDir = 0;
+  switch (params.direction) {
+    case "east":
+      xDir = 1;
+      yDir = 0;
+      break;
+    case "west":
+      xDir = -1;
+      yDir = 0;
+      break;
+    case "north":
+      xDir = 0;
+      yDir = -1;
+      break;
+    case "south":
+      xDir = 0;
+      yDir = 1;
+      break;
+    default:
+      xDir = 0;
+      yDir = 0;
+  }
 
-  games().remove();
-  games().insertOne({ ...gameObject, _id: id });
-
-  res.json(gameObject);
+  games().findOneAndUpdate(
+    {},
+    {
+      $inc: {
+        playerX: xDir,
+        playerY: yDir,
+      },
+    },
+    { returnOriginal: false, upsert: true },
+    function (err, response) {
+      if (err) {
+        res.json(0);
+      } else {
+        console.log(response.value);
+        console.log(`${xDir}`);
+        res.json(response.value);
+        return;
+      }
+    }
+  );
 });
 
 app.post("/game", (req, res) => {
@@ -40,8 +69,6 @@ app.post("/game", (req, res) => {
   const id = uuid();
   const playerX = 5;
   const playerY = 5;
-  const enemyX = 10;
-  const enemyY = 10;
   const gameWidth = 25;
   const gameHeight = 20;
 
@@ -49,8 +76,6 @@ app.post("/game", (req, res) => {
     gameId: id,
     playerX,
     playerY,
-    enemyX,
-    enemyY,
     gameWidth,
     gameHeight,
   };

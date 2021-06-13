@@ -106,6 +106,7 @@ function App() {
   return (
     <div className="App">
       <GameGrid game={game}></GameGrid>
+      <img src="image/enemy.png" height="100px" />
     </div>
   );
 }

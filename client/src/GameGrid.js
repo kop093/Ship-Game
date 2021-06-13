@@ -23,12 +23,7 @@ const GameGrid = (props) => {
     );
   }
 
-  return (
-    <div className="GameGrid">
-      {rows}
-      <img src="./image/kenney_piratepack/PNG/Retina/Ships/ship (1).png" />
-    </div>
-  );
+  return <div className="GameGrid">{rows}</div>;
 };
 
 export default GameGrid;
