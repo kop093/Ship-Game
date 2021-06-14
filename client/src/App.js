@@ -106,7 +106,10 @@ function App() {
   return (
     <div className="App">
       <GameGrid game={game}></GameGrid>
-      <img src="image/enemy.png" height="100px" />
+      <img
+        // src="image/kenney_piratepack/PNG/Default_size/Ships/Ship1.png"
+
+      />
     </div>
   );
 }

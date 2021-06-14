@@ -67,8 +67,8 @@ app.put("/game/player/move/:direction", (req, res) => {
 app.post("/game", (req, res) => {
   //calling this endpoint creates a new game
   const id = uuid();
-  const playerX = 5;
-  const playerY = 5;
+  const playerX = 13;
+  const playerY = 1;
   const gameWidth = 25;
   const gameHeight = 20;
 
