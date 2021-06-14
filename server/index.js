@@ -69,6 +69,7 @@ app.post("/game", (req, res) => {
   const id = uuid();
   const playerX = 13;
   const playerY = 1;
+
   const gameWidth = 25;
   const gameHeight = 20;
 

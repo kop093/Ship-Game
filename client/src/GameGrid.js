@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import styled from "styled-components";
 
 const GameGrid = (props) => {
   const { game } = props;
@@ -30,7 +31,29 @@ const GameGrid = (props) => {
     );
   }
 
-  return <div className="GameGrid">{rows}</div>;
+  return <GameGridWrapper className="GameGrid">{rows}</GameGridWrapper>;
 };
+
+const GameGridWrapper = styled.div`
+  .GameGridRow {
+    display: flex;
+  }
+  .GameGridRow > div {
+    flex-direction: row;
+    min-width: 40px;
+    min-height: 40px;
+    background-color: aqua;
+    border: 0.1px solid;
+    justify-content: center;
+  }
+  .GameGridRow > div.Player > img {
+    position: absolute;
+    height: 35px;
+    margin-left: 0.5%;
+  }
+  .GameGridRow > div.Player {
+    background-color: aqua;
+  }
+`;
 
 export default GameGrid;

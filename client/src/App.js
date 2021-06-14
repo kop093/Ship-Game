@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import GameGrid from "./GameGrid";
+import styled from "styled-components";
 
 const getDirection = ({ playerX, playerY, x, y }) => {
   const dx = x - playerX;
@@ -104,10 +105,15 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <AppWrapper>
+      {/* <Home></Home> */}
+      {/* <Menu></Menu> */}
       <GameGrid game={game}></GameGrid>
-    </div>
+    </AppWrapper>
   );
 }
+const AppWrapper = styled.div`
+  margin-left: 15%;
+`;
 
 export default App;
