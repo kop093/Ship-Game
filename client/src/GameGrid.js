@@ -9,12 +9,19 @@ const GameGrid = (props) => {
     let cols = [];
     for (let col = 1; col <= game.gameWidth; col++) {
       let classNames = "";
-
+      let image = <img />;
       if (row === playerY && col === playerX) {
         classNames = "Player";
+        image = (
+          <img src="image/kenney_piratepack/PNG/Default_size/Ships/Ship1.png" />
+        );
       }
       const id = `cell-${row}-${col}`;
-      cols.push(<div key={id} className={classNames} id={id}></div>);
+      cols.push(
+        <div key={id} className={classNames} id={id}>
+          {image}
+        </div>
+      );
     }
     rows.push(
       <div key={`row-${row}`} className="GameGridRow">

@@ -99,17 +99,13 @@ function App() {
       });
   }, [action]);
 
-  if (game.isLoading) {
+  if (game.isLoading || !game) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="App">
       <GameGrid game={game}></GameGrid>
-      <img
-        // src="image/kenney_piratepack/PNG/Default_size/Ships/Ship1.png"
-
-      />
     </div>
   );
 }

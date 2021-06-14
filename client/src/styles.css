@@ -7,19 +7,19 @@
 }
 
 .GameGridRow > div {
-  min-width: 20px;
-  min-height: 20px;
+  min-width: 40px;
+  min-height: 40px;
   background-color: aqua;
-  border: 1px solid;
+  border: 0.1px solid;
 }
 
 .GameGridRow > div.Player {
-  background-color: brown;
-  /* background-image: url("./image/samleimage2.png"); */
-  /* z-index: 10; */
+  background-color: aqua;
 }
 
-img {
+.GameGridRow > div.Player > img {
   position: absolute;
-  height: 20px;
+  height: 35px;
+  padding-left: 0.5%;
+  padding-top: 0.1%;
 }
