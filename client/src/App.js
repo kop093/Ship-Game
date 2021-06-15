@@ -1,6 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
 import GameGrid from "./GameGrid";
 import styled from "styled-components";
+import MenuBar from "./MenuBar";
+import GlobalStyles from "./GlobalStyles";
+import ActionBar from "./ActionBar";
 
 const getDirection = ({ playerX, playerY, x, y }) => {
   const dx = x - playerX;
@@ -53,6 +56,29 @@ const getDirection = ({ playerX, playerY, x, y }) => {
   }
 };
 
+const getCanon = (playerX, playerY, canonOnMap) => {
+  for (let i = 0; i < canonOnMap.length; i++) {
+    if (canonOnMap[i] != null) {
+      if (
+        playerY === canonOnMap[i].canonY &&
+        playerX === canonOnMap[i].canonX
+      ) {
+        return i;
+      }
+    }
+  }
+};
+
+const getFightEnemy = (PlayerX, PlayerY, enemy) => {
+  for (let i = 0; i < enemy.length; i++) {
+    if (enemy[i] != null) {
+      if (PlayerY === enemy[i].enemyY && PlayerX === enemy[i].enemyX) {
+        return i;
+      }
+    }
+  }
+};
+
 function App() {
   const [game, setGame] = useState({ isLoading: true });
 
@@ -83,7 +109,6 @@ function App() {
     if (!action) {
       return;
     }
-    console.log(game);
     const { row, col } = action;
 
     const direction = getDirection({
@@ -93,27 +118,49 @@ function App() {
       x: parseInt(col),
     });
 
-    fetch(`/game/player/move/${direction}`, { method: "PUT" })
+    const canonFound = getCanon(game.playerX, game.playerY, game.canonOnMap);
+
+    const enemyConflict = getFightEnemy(game.playerX, game.playerY, game.enemy);
+
+    fetch(`/game/player/move/${direction}/${canonFound}/${enemyConflict}`, {
+      method: "PUT",
+    })
       .then((res) => res.json())
       .then((game) => {
+        console.log(
+          `/game/player/move/${direction}/${canonFound}/${enemyConflict}`
+        );
+        console.log(game);
         setGame(game);
       });
   }, [action]);
 
-  if (game.isLoading || !game) {
+  if (game.isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
     <AppWrapper>
-      {/* <Home></Home> */}
-      {/* <Menu></Menu> */}
-      <GameGrid game={game}></GameGrid>
+      <GlobalStyles />
+      <MenuBar />
+      <ActionBarPosition>
+        <GameGrid game={game}></GameGrid>
+        <ActionBar game={game}></ActionBar>
+      </ActionBarPosition>
+      <BorderBase></BorderBase>
     </AppWrapper>
   );
 }
 const AppWrapper = styled.div`
   margin-left: 15%;
 `;
+const ActionBarPosition = styled.div`
+  display: flex;
+`;
 
+const BorderBase = styled.div`
+  border: 2px solid;
+  width: 1100px;
+  z-index: 10;
+`;
 export default App;
