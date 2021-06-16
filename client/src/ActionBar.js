@@ -3,6 +3,12 @@ import styled from "styled-components";
 
 const ActionBar = (props) => {
   let { game } = props;
+  let key = 0;
+  if (game.key >= 1) {
+    key = (
+      <img src="image/kenney_piratepack/PNG/Default_size/Ship_parts/key.png" />
+    );
+  }
   return (
     <ActionBarWrapper>
       <h1>Instruction:</h1>
@@ -12,6 +18,8 @@ const ActionBar = (props) => {
       <p>Get the key from an enemy ship to proceed</p>
       <Space>Items</Space>
       <p>canon ball: {game.canonOnShip}</p>
+      <Space>Items</Space>
+      <p>key: {key}</p>
     </ActionBarWrapper>
   );
 };
@@ -28,7 +36,7 @@ const ActionBarWrapper = styled.div`
 `;
 
 const Space = styled.h1`
-  padding-top: 20px;
+  padding-top: 25px;
 `;
 
 export default ActionBar;

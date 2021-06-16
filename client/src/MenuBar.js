@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import MenuButton from "./MenuButton";
 
-const MenuBar = () => {
+const MenuBar = (props) => {
+  let { game } = props;
   return (
     <MenuBarWrapper>
-      <Title>Adventures of a Merchant</Title>
-      <MenuButton></MenuButton>
+      <Title>Adventures of an Unlucky Merchant</Title>
+      <Level>Level: {game.level}</Level>
+      {/* <MenuButton></MenuButton> */}
     </MenuBarWrapper>
   );
 };
@@ -24,5 +26,6 @@ const Title = styled.h1`
   font-size: 30px;
   margin-right: 80px;
 `;
+const Level = styled.h1``;
 
 export default MenuBar;
